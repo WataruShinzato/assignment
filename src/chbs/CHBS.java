@@ -10,5 +10,6 @@ public class CHBS {
     
     public static void main(String[] args) {
         DataIO.read();
+        System.out.println("x");
     }    
 }
