@@ -14,5 +14,6 @@ public class CHBS {
         System.out.println("x");
         System.out.println("nagatomo writed");
         System.out.println("wataru writed");
+        System.out.println("wataru writed");
     }
 }
