@@ -69,26 +69,30 @@ public class CommitteeBookingManage extends JFrame implements ActionListener {
       } else {
         JOptionPane.showMessageDialog(addBooking, "You have unpaid booking!");
       }
-    } else if (e.getSource() == cancelBooking) { 
+    } else if (e.getSource() == cancelBooking) {
       String inputName = JOptionPane.showInputDialog("Username :");
-      int inputPassword = Integer.parseInt(JOptionPane.showInputDialog("Password:"));
-      MyCustomer customer = new MyCustomer(inputName, inputPassword);
-      Booking userBook=null;
-      for (Booking userBooking : DataIO.allBookings) {
-          if (userBooking.getOnwer().getName().equals(inputName)) {
-              userBook = userBooking;
-          }
-      }
-      System.out.println(userBook);
-      /*Booking userbBooking = customer.getMyBookings().get(0);
-      
-
-            if (customer.getMyBookings().size()>0 && customer.getMyBookings().remove(userbBooking)) {
-                DataIO.write();
-                JOptionPane.showMessageDialog(cancelBooking, "You removed reservation!");
-            } else {
-                JOptionPane.showMessageDialog(cancelBooking, "There's no reservation");
-            }*/
+      // MyCustomer customer = new MyCustomer(inputName, inputPassword);
+      // for (Booking userBooking : DataIO.allBookings) {
+      // if (userBooking.getOnwer().getName().equals(inputName)) {
+      // userBook = userBooking;
+      // break;
+      // }
+      // userBook = null;
+      // }
+      MyCustomer SearchUser = DataIO.checking(inputName);
+      System.out.println(SearchUser.getMyBookings().size());
+      /*
+       * Booking userbBooking = customer.getMyBookings().get(0);
+       * 
+       * 
+       * if (customer.getMyBookings().size()>0 &&
+       * customer.getMyBookings().remove(userbBooking)) {
+       * DataIO.write();
+       * JOptionPane.showMessageDialog(cancelBooking, "You removed reservation!");
+       * } else {
+       * JOptionPane.showMessageDialog(cancelBooking, "There's no reservation");
+       * }
+       */
     } else if (e.getSource() == modifyBooking) {
       // TODO
     } else if (e.getSource() == searchBooking) {
