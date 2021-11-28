@@ -19,3 +19,10 @@ Monday
 false
 nagatomo
 
+10004
+ConsultantC
+Wednesday
+12
+false
+shinzato
+
