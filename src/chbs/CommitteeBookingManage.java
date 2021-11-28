@@ -81,6 +81,15 @@ public class CommitteeBookingManage extends JFrame implements ActionListener {
       // }
       MyCustomer SearchUser = DataIO.checking(inputName);
       System.out.println(SearchUser.getMyBookings().size());
+      if(SearchUser.getMyBookings().size()>0){
+        Booking userBooking = SearchUser.getMyBookings().get(0);
+        if(DataIO.allBookings.remove(userBooking) && SearchUser.getMyBookings().remove(userBooking)){
+          DataIO.write();
+          JOptionPane.showMessageDialog(cancelBooking, "You removed reservation!");
+        }else{
+          JOptionPane.showMessageDialog(cancelBooking, "There's no reservation");
+        }
+      }
       /*
        * Booking userbBooking = customer.getMyBookings().get(0);
        * 
