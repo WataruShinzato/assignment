@@ -148,7 +148,31 @@ public class CommitteeBookingManage extends JFrame implements ActionListener {
 
   
     } else if (e.getSource() == searchBooking) {
-      // TODO
+      String inputName = JOptionPane.showInputDialog("Username :");
+      MyCustomer searchUser = DataIO.checking(inputName);
+
+      if (searchUser == null) {
+        JOptionPane.showMessageDialog(searchBooking, "There's no user in customer");
+        return;
+      }
+
+      int inputPassword = Integer.parseInt(JOptionPane.showInputDialog("Password:"));
+
+      if (searchUser.getPassword() != inputPassword) {
+        JOptionPane.showMessageDialog(searchBooking, "Wrong password");
+        return;
+      }
+
+      Booking searchUserBooking = searchUser.getMyBookings().get(0);
+
+      String bookingId = String.valueOf(searchUserBooking.getId());
+      String bookingConsultant = searchUserBooking.getConsultant().toString();
+      String bookingDay = searchUserBooking.getDay().toString();
+      String bookingTime = String.valueOf(searchUserBooking.getTime());
+
+      String dialogLabel = bookingId + "\n" + bookingConsultant + "\n" + bookingDay + "\n" + bookingTime + "\n"
+          + "Register: " + inputName;
+      JOptionPane.showMessageDialog(searchBooking, dialogLabel);
     }
   }
 }
