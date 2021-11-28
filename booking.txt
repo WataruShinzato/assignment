@@ -12,24 +12,10 @@ Tuesday
 false
 wataru
 
-10003
-ConsultantA
-Monday
-16
-false
-nagatomo
-
 10004
 ConsultantC
 Tuesday
 12
 false
 wataru
-
-10004
-ConsultantC
-Wednesday
-12
-false
-shinzato
 

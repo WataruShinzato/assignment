@@ -36,38 +36,44 @@ public class CommitteeBookingManage extends JFrame implements ActionListener {
     if (e.getSource() == addBooking) {
       String inputName = JOptionPane.showInputDialog("Username:");
       int inputPassword = Integer.parseInt(JOptionPane.showInputDialog("Password:"));
-      MyCustomer customer = new MyCustomer(inputName, inputPassword);
-      int size = customer.getMyBookings().size();
-      if (size == 0 || customer.getMyBookings().get(size - 1).isPaid()) {
-        try {
-          Consultant a = Consultant.valueOf(JOptionPane.showInputDialog("Consultant:"));
-          Day b = Day.valueOf(JOptionPane.showInputDialog("Day:"));
-          int c = Integer.parseInt(JOptionPane.showInputDialog("Time:"));
-          if (c < 9 || c > 16) {
-            throw new Exception();
-          }
-          boolean flag = true;
-          for (int i = 0; i < DataIO.allBookings.size(); i++) {
-            Booking j = DataIO.allBookings.get(i);
-            if (a.equals(j.getConsultant()) && b.equals(j.getDay()) && c == j.getTime()) {
-              flag = false;
-              break;
+      //MyCustomer customer = new MyCustomer(inputName, inputPassword);
+      MyCustomer customer = DataIO.checking(inputName);
+      if(customer!= null){
+        int size = customer.getMyBookings().size();
+        
+        if(size == 0 || customer.getMyBookings().get(size - 1).isPaid()) {
+          try {
+            Consultant a = Consultant.valueOf(JOptionPane.showInputDialog("Consultant:"));
+            Day b = Day.valueOf(JOptionPane.showInputDialog("Day:"));
+            int c = Integer.parseInt(JOptionPane.showInputDialog("Time:"));
+            if (c < 9 || c > 16) {
+              throw new Exception();
             }
+            boolean flag = true;
+            for (int i = 0; i < DataIO.allBookings.size(); i++) {
+              Booking j = DataIO.allBookings.get(i);
+              if (a.equals(j.getConsultant()) && b.equals(j.getDay()) && c == j.getTime()) {
+                flag = false;
+                break;
+              }
+            }
+            if (flag) {
+              int id = 10001 + DataIO.allBookings.size();
+              JOptionPane.showMessageDialog(addBooking, "Your id is " + id);
+              Booking x = new Booking(id, a, b, c, false, customer);
+              DataIO.allBookings.add(x);
+              DataIO.write();
+            } else {
+              JOptionPane.showMessageDialog(addBooking, "Not available!");
+            }
+          } catch (Exception ex) {
+            JOptionPane.showMessageDialog(addBooking, "Wrong input!");
           }
-          if (flag) {
-            int id = 10001 + DataIO.allBookings.size();
-            JOptionPane.showMessageDialog(addBooking, "Your id is " + id);
-            Booking x = new Booking(id, a, b, c, false, customer);
-            DataIO.allBookings.add(x);
-            DataIO.write();
-          } else {
-            JOptionPane.showMessageDialog(addBooking, "Not available!");
-          }
-        } catch (Exception ex) {
-          JOptionPane.showMessageDialog(addBooking, "Wrong input!");
+        } else {
+          JOptionPane.showMessageDialog(addBooking, "You have unpaid booking!");
         }
-      } else {
-        JOptionPane.showMessageDialog(addBooking, "You have unpaid booking!");
+      } else{
+        JOptionPane.showMessageDialog(addBooking, "There is no name in the booking!");
       }
     } else if (e.getSource() == cancelBooking) {
       String inputName = JOptionPane.showInputDialog("Username :");
