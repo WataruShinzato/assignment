@@ -109,7 +109,44 @@ public class CommitteeBookingManage extends JFrame implements ActionListener {
        * }
        */
     } else if (e.getSource() == modifyBooking) {
-      // TODO
+      String inputName = JOptionPane.showInputDialog("Username:");
+      MyCustomer customer = DataIO.checking(inputName);
+      int size = customer.getMyBookings().size();
+      int indexOfMyAppoint = DataIO.allBookings.indexOf(customer.getMyBookings().get(0));
+
+      if (size > 0) {
+          try {
+              Consultant a = Consultant.valueOf(JOptionPane.showInputDialog("Consultant:"));
+              Day b = Day.valueOf(JOptionPane.showInputDialog("Day:"));
+              int c = Integer.parseInt(JOptionPane.showInputDialog("Time:"));
+              if (c < 9 || c > 16) {
+                  throw new Exception();
+              }
+              boolean flag = true;
+              for (int i = 0; i < DataIO.allBookings.size(); i++) {
+                  Booking j = DataIO.allBookings.get(i);
+                  if (a.equals(j.getConsultant()) && b.equals(j.getDay()) && c == j.getTime()) {
+                      flag = false;
+                      break;
+                  }
+              }
+              if (flag) {
+                  //int id = 10001 + DataIO.allBookings.size();
+                  int id = customer.getMyBookings().get(0).getId();   // use previous id (not update)
+                  JOptionPane.showMessageDialog(modifyBooking, "Your id is " + id);
+                  Booking x = new Booking(id, a, b, c, false, customer);
+                  customer.getMyBookings().set(0, x);
+                  DataIO.allBookings.set(indexOfMyAppoint, x);
+                  DataIO.write();
+              } else {
+                  JOptionPane.showMessageDialog(modifyBooking, "Not available!");
+              }
+          } catch (Exception ex) {
+              JOptionPane.showMessageDialog(modifyBooking, "Wrong input!");
+          }
+      }
+
+  
     } else if (e.getSource() == searchBooking) {
       // TODO
     }
