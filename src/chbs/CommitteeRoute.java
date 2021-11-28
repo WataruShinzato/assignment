@@ -29,7 +29,7 @@ public class CommitteeRoute extends JFrame implements ActionListener {
     if (e.getSource() == bookingManagement) {
       CHBS.committeeBookingManage.setVisible(true);
     } else {
-      //CHBS.committeeScreen.setVisible(true);
+      CHBS.committeeUserManage.setVisible(true);
     }
   }
 }
