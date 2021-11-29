@@ -9,7 +9,9 @@ public class DataIO {
     public static ArrayList<Booking> allBookings = 
             new ArrayList<Booking>();
     public static ArrayList<Committee> allCommittee = 
-            new ArrayList<Committee>();        
+            new ArrayList<Committee>(); 
+    public static ArrayList<Vaccine> allvaccine = 
+            new ArrayList<Vaccine>();               
     public static void read(){
         try{
             Scanner s = new Scanner(new File("people.txt"));  // scan people file and add to allcustomer array.
@@ -61,6 +63,13 @@ public class DataIO {
                     r.println();
                 }
                 r.close();
+                PrintWriter s = new PrintWriter("vaccine.txt");
+                for(int i=0; i<allvaccine.size(); i++){
+                    s.println(allvaccine.get(i).getQuantity());
+                    s.println(allvaccine.get(i).get());
+                    s.println();
+                }
+                s.close();
                 PrintWriter q = new PrintWriter("booking.txt");        // write booing information to booking file from alllbooking array
                 for(int i=0; i<allBookings.size(); i++){
                     Booking j = allBookings.get(i);
