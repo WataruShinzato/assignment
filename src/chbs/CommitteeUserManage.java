@@ -55,7 +55,22 @@ public class CommitteeUserManage extends JFrame implements ActionListener {
       }
       System.out.println(userBook);
     } else if (e.getSource() == modifyUserAccount) {
-      // TODO
+            
+            String inputName = String.valueOf(JOptionPane.showInputDialog("Name:")); // reinput name from user
+            MyCustomer found = DataIO.checking(inputName);
+            if (found !=null){
+              int indexOfMyInfo = DataIO.allCustomers.indexOf(found);
+              String inputName2 = String.valueOf(JOptionPane.showInputDialog("New Name:"));
+              int password = Integer.parseInt(JOptionPane.showInputDialog("New Password:")); // reinput password from user
+              MyCustomer updatedMyData = new MyCustomer(inputName2, password); // assign inputname and password to
+
+              found.setName(inputName2); // set inputname
+              found.setPassword(password); // set password
+              DataIO.allCustomers.set(indexOfMyInfo, updatedMyData); // replace the data before and after the change.
+              DataIO.write(); // write it on people file
+            }else{
+              JOptionPane.showMessageDialog(modifyUserAccount,"There is no name");
+            }
     } else if (e.getSource() == searchUserAccount) {
       // TODO
     }

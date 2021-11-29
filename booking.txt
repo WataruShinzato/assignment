@@ -3,19 +3,19 @@ ConsultantA
 Friday
 10
 false
-wataru
+abe
 
 10002
 ConsultantB
 Tuesday
 15
 false
-wataru
+abe
 
 10004
 ConsultantC
 Tuesday
 12
 false
-wataru
+abe
 
