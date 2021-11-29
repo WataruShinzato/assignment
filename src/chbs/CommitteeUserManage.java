@@ -72,7 +72,20 @@ public class CommitteeUserManage extends JFrame implements ActionListener {
               JOptionPane.showMessageDialog(modifyUserAccount,"There is no name");
             }
     } else if (e.getSource() == searchUserAccount) {
-      // TODO
+      String inputName = JOptionPane.showInputDialog("Username :");
+      MyCustomer searchUser = DataIO.checking(inputName);
+
+      if (searchUser == null) {
+        JOptionPane.showMessageDialog(searchUserAccount, "There's no user in customer");
+        return;
+      }
+      String userName = searchUser.getName();
+      int userPassword = searchUser.getPassword();
+      JOptionPane.showMessageDialog(searchUserAccount,userName+" "+ userPassword);
+
+      
+      
+
     }
   }
 }
