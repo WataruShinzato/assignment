@@ -33,17 +33,22 @@ public class VaccineManagement extends JFrame implements ActionListener {
         add(search);
     }
     public void actionPerformed(ActionEvent e){
+        
         if (e.getSource() == logout) { // action when you push logout button
             CHBS.login = null;
             setVisible(false);
             CHBS.first.setVisible(true);
         } else if (e.getSource() == add) { // action when you push booking button
-            int quantity = Integer.parseInt(JOptionPane.showInputDialog("Additional Quantity:"));
-            Day b = Day.valueOf(JOptionPane.showInputDialog("Day:"));
-            int c = Integer.parseInt(JOptionPane.showInputDialog("Time:"));
-            Vaccine x = new Vaccine(quantity, b, c);
-            DataIO.allvaccine.add(x);
-            DataIO.write();
+            try{
+                int quantity = Integer.parseInt(JOptionPane.showInputDialog("Additional Quantity:"));
+                Day b = Day.valueOf(JOptionPane.showInputDialog("Day:"));   
+                int c = Integer.parseInt(JOptionPane.showInputDialog("Time:"));
+                Vaccine x = new Vaccine(quantity, b, c);
+                DataIO.allvaccine.add(x);
+                DataIO.write();
+            }catch(Exception error){
+                JOptionPane.showMessageDialog(add, "Wrong Input!");
+            }
         } else if (e.getSource() == delete) { // action when you push cancel button
             
 

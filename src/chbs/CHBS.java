@@ -11,6 +11,7 @@ public class CHBS {
     public static CommitteeUserManage committeeUserManage = new CommitteeUserManage();
     public static MyCustomer login;
     public static Committee committee;
+    public static VaccineManagement vaccineManagement = new VaccineManagement();
 
     public static void main(String[] args) {
         DataIO.read();

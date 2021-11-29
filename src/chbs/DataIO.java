@@ -66,7 +66,8 @@ public class DataIO {
                 PrintWriter s = new PrintWriter("vaccine.txt");
                 for(int i=0; i<allvaccine.size(); i++){
                     s.println(allvaccine.get(i).getQuantity());
-                    s.println(allvaccine.get(i).get());
+                    s.println(allvaccine.get(i).getDay());
+                    s.println(allvaccine.get(i).getTime());
                     s.println();
                 }
                 s.close();

@@ -10,15 +10,15 @@ public class CommitteeRoute extends JFrame implements ActionListener {
   private Button bookingManagement, userManagement, vaccinationManagement, committeeManagement, statisticalReport;
 
   public CommitteeRoute() {
-    setSize(250, 100);
+    setSize(500, 250);
     setLocation(700, 500);
     setLayout(new FlowLayout());
 
     bookingManagement = new Button("Booking Manage");
     userManagement = new Button("User Manage");
-    vaccinationManagement = new Button("User Manage");
-    committeeManagement = new Button("User Manage");
-    statisticalReport = new Button("User Manage");
+    vaccinationManagement = new Button("Vaccine Manage");
+    committeeManagement = new Button("Committee Manage");
+    statisticalReport = new Button("Statistical Report");
 
     bookingManagement.addActionListener(this);
     userManagement.addActionListener(this);
@@ -40,7 +40,8 @@ public class CommitteeRoute extends JFrame implements ActionListener {
     } else if (e.getSource() == userManagement) {
       CHBS.committeeUserManage.setVisible(true);
     } else if (e.getSource() == vaccinationManagement) {
-      // TODO: move vaccinationScreen
+      CHBS.vaccineManagement.setVisible(true);
+
     } else if (e.getSource() == committeeManagement) {
       // TODO: move committeeManagementScreen
     } else if (e.getSource() == statisticalReport) {
