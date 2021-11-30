@@ -40,8 +40,6 @@ public class CommitteeBookingManage extends JFrame implements ActionListener {
   public void actionPerformed(ActionEvent e) {
     if (e.getSource() == addBooking) {
       String inputName = JOptionPane.showInputDialog("Username:");
-      // int inputPassword =
-      // Integer.parseInt(JOptionPane.showInputDialog("Password:"));
       MyCustomer customer = DataIO.checking(inputName);
       if (customer != null) {
         int size = customer.getMyBookings().size();
@@ -82,14 +80,6 @@ public class CommitteeBookingManage extends JFrame implements ActionListener {
       }
     } else if (e.getSource() == cancelBooking) {
       String inputName = JOptionPane.showInputDialog("Username :");
-      // MyCustomer customer = new MyCustomer(inputName, inputPassword);
-      // for (Booking userBooking : DataIO.allBookings) {
-      // if (userBooking.getOnwer().getName().equals(inputName)) {
-      // userBook = userBooking;
-      // break;
-      // }
-      // userBook = null;
-      // }
       MyCustomer SearchUser = DataIO.checking(inputName);
       System.out.println(SearchUser.getMyBookings().size());
       if (SearchUser.getMyBookings().size() > 0) {
@@ -101,18 +91,6 @@ public class CommitteeBookingManage extends JFrame implements ActionListener {
           JOptionPane.showMessageDialog(cancelBooking, "There's no reservation");
         }
       }
-      /*
-       * Booking userbBooking = customer.getMyBookings().get(0);
-       * 
-       * 
-       * if (customer.getMyBookings().size()>0 &&
-       * customer.getMyBookings().remove(userbBooking)) {
-       * DataIO.write();
-       * JOptionPane.showMessageDialog(cancelBooking, "You removed reservation!");
-       * } else {
-       * JOptionPane.showMessageDialog(cancelBooking, "There's no reservation");
-       * }
-       */
     } else if (e.getSource() == modifyBooking) {
       String inputName = JOptionPane.showInputDialog("Username:");
       MyCustomer customer = DataIO.checking(inputName);
@@ -136,7 +114,6 @@ public class CommitteeBookingManage extends JFrame implements ActionListener {
             }
           }
           if (flag) {
-            // int id = 10001 + DataIO.allBookings.size();
             int id = customer.getMyBookings().get(0).getId(); // use previous id (not update)
             JOptionPane.showMessageDialog(modifyBooking, "Your id is " + id);
             Booking x = new Booking(id, a, b, c, false, customer);
@@ -167,16 +144,21 @@ public class CommitteeBookingManage extends JFrame implements ActionListener {
         return;
       }
 
-      Booking searchUserBooking = searchUser.getMyBookings().get(0);
+      if (searchUser.getMyBookings().size() > 0) {
+        Booking searchUserBooking = searchUser.getMyBookings().get(0);
 
-      String bookingId = String.valueOf(searchUserBooking.getId());
-      String bookingConsultant = searchUserBooking.getConsultant().toString();
-      String bookingDay = searchUserBooking.getDay().toString();
-      String bookingTime = String.valueOf(searchUserBooking.getTime());
+        String bookingId = String.valueOf(searchUserBooking.getId());
+        String bookingConsultant = searchUserBooking.getConsultant().toString();
+        String bookingDay = searchUserBooking.getDay().toString();
+        String bookingTime = String.valueOf(searchUserBooking.getTime());
 
-      String dialogLabel = bookingId + "\n" + bookingConsultant + "\n" + bookingDay + "\n" + bookingTime + "\n"
-          + "Register: " + inputName;
-      JOptionPane.showMessageDialog(searchBooking, dialogLabel);
+        String dialogLabel = bookingId + "\n" + bookingConsultant + "\n" + bookingDay + "\n" + bookingTime + "\n"
+            + "Register: " + inputName;
+        JOptionPane.showMessageDialog(searchBooking, dialogLabel);
+      } else {
+        JOptionPane.showMessageDialog(searchBooking, "There's no booking");
+
+      }
     }
   }
 }

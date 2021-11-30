@@ -48,6 +48,8 @@ public class DataIO {
                 boolean e = Boolean.parseBoolean(t.nextLine());
                 MyCustomer f = DataIO.checking(t.nextLine());
                 t.nextLine();
+                t.nextLine();
+                t.nextLine();
                 Booking x = new Booking(a, b, c, d, e, f);
                 allBookings.add(x);
                 f.getMyBookings().add(x);
@@ -102,6 +104,8 @@ public class DataIO {
                 q.println(j.getTime());
                 q.println(j.isPaid());
                 q.println(j.getOnwer().getName());
+                q.println(j.getOnwer().getAge());
+                q.println(j.getOnwer().getGender());
                 q.println();
             }
             q.close();
