@@ -11,7 +11,7 @@ import java.awt.FlowLayout;
 import java.awt.Button;
 
 public class StatisticalReport extends JFrame implements ActionListener {
-    private Button searchByAge, searchByGender, searchByWoman;
+    private Button searchByAge, searchByGender;
 
     public StatisticalReport() {
         setSize(500, 250);
@@ -100,16 +100,8 @@ public class StatisticalReport extends JFrame implements ActionListener {
                 }
 
             }
-            Integer p = Integer.valueOf(n);
-            Integer q = Integer.valueOf(m);
-            String summ = p.toString();
-            String sumw = q.toString();
 
-            JOptionPane.showMessageDialog(searchByGender, "The number of man:" + summ + "The number of woman:" + sumw);
-        } else if (e.getSource() == searchByWoman) {
-            String data = "";
-            // TODO: 女性の人数を定義
-            JOptionPane.showMessageDialog(searchByAge, data);
+            JOptionPane.showMessageDialog(searchByGender, "The number of man:" + n + "\n" + "The number of woman:" + m);
         }
     }
 }
