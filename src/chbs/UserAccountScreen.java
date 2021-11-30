@@ -8,12 +8,12 @@ import java.awt.event.ActionListener;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
-public class Page2 extends JFrame implements ActionListener { // Action after login
+public class UserAccountScreen extends JFrame implements ActionListener { // Action after login
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == logout) { // action when you push logout button
             CHBS.login = null;
             setVisible(false);
-            CHBS.first.setVisible(true);
+            CHBS.userAuth.setVisible(true);
         } else if (e.getSource() == booking) { // action when you push booking button
             int size = CHBS.login.getMyBookings().size();
             if (size == 0 || CHBS.login.getMyBookings().get(size - 1).isPaid()) {
@@ -95,16 +95,19 @@ public class Page2 extends JFrame implements ActionListener { // Action after lo
             }
 
         } else if (e.getSource() == usermodify) { // action when you push usermodify button
-
-            // MyCustomer searchCustomer = DataIO.checking(getName());
             MyCustomer myData = CHBS.login;
             int indexOfMyInfo = DataIO.allCustomers.indexOf(myData);
             String inputName = String.valueOf(JOptionPane.showInputDialog("Name:")); // reinput name from user
             int password = Integer.parseInt(JOptionPane.showInputDialog("Password:")); // reinput password from user
-            MyCustomer updatedMyData = new MyCustomer(inputName, password); // assign inputname and password to
+            int age = Integer.parseInt(JOptionPane.showInputDialog("Age:"));
+            Gender gender = Gender.valueOf(JOptionPane.showInputDialog("Gender:"));
+            MyCustomer updatedMyData = new MyCustomer(inputName, password, age, gender);
+            // assign inputname and password to
 
             myData.setName(inputName); // set inputname
             myData.setPassword(password); // set password
+            myData.setAge(age);
+            myData.setGender(gender);
             DataIO.allCustomers.set(indexOfMyInfo, updatedMyData); // replace the data before and after the change.
             DataIO.write(); // write it on people file
 
@@ -125,7 +128,7 @@ public class Page2 extends JFrame implements ActionListener { // Action after lo
 
     private Button booking, cancel, logout, usermodify, bookingmodify, viewreservation; // button design
 
-    public Page2() {
+    public UserAccountScreen() {
         setSize(500, 250);
         setLocation(700, 500);
         setLayout(new FlowLayout());

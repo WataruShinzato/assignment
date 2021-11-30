@@ -7,7 +7,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
-public class Page1First extends JFrame implements ActionListener { // action after you push people button
+public class UserAuth extends JFrame implements ActionListener { // action after you push people button
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == stop) { // action when you push stop button
             System.exit(0);
@@ -15,10 +15,16 @@ public class Page1First extends JFrame implements ActionListener { // action aft
             String input = JOptionPane.showInputDialog("Username:");
             MyCustomer found = DataIO.checking(input);
             if (found == null) {
-                int a = Integer.parseInt(JOptionPane.showInputDialog("Password:"));
-                MyCustomer c = new MyCustomer(input, a);
-                DataIO.allCustomers.add(c);
-                DataIO.write();
+                try {
+                    int a = Integer.parseInt(JOptionPane.showInputDialog("Password:"));
+                    int age = Integer.parseInt(JOptionPane.showInputDialog("Age:"));
+                    Gender gender = Gender.valueOf(JOptionPane.showInputDialog("Gender:"));
+                    MyCustomer c = new MyCustomer(input, a, age, gender);
+                    DataIO.allCustomers.add(c);
+                    DataIO.write();
+                } catch (Exception error) {
+                    JOptionPane.showMessageDialog(login, "Wrong input");
+                }
             } else {
                 JOptionPane.showMessageDialog(register, "The username has been used!");
             }
@@ -42,7 +48,7 @@ public class Page1First extends JFrame implements ActionListener { // action aft
 
     private Button register, login, stop; // button design
 
-    public Page1First() {
+    public UserAuth() {
         setSize(250, 100);
         setLocation(700, 200);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

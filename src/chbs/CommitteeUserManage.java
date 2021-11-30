@@ -37,7 +37,9 @@ public class CommitteeUserManage extends JFrame implements ActionListener {
       MyCustomer found = DataIO.checking(inputName);
       if (found == null) {
         int inputPassword = Integer.parseInt(JOptionPane.showInputDialog("Password:"));
-        MyCustomer newCustomer = new MyCustomer(inputName, inputPassword);
+        int age = Integer.parseInt(JOptionPane.showInputDialog("Age:"));
+        Gender gender = Gender.valueOf(JOptionPane.showInputDialog("Gender:"));
+        MyCustomer newCustomer = new MyCustomer(inputName, inputPassword, age, gender);
         DataIO.allCustomers.add(newCustomer);
         DataIO.write();
         JOptionPane.showMessageDialog(addUserAccount, inputName + "'s account is registered!");
@@ -70,9 +72,12 @@ public class CommitteeUserManage extends JFrame implements ActionListener {
       MyCustomer found = DataIO.checking(inputName);
       if (found != null) {
         int indexOfMyInfo = DataIO.allCustomers.indexOf(found);
+
         String inputName2 = String.valueOf(JOptionPane.showInputDialog("New Name:"));
         int password = Integer.parseInt(JOptionPane.showInputDialog("New Password:")); // reinput password from user
-        MyCustomer updatedMyData = new MyCustomer(inputName2, password); // assign inputname and password to
+        int age = Integer.parseInt(JOptionPane.showInputDialog("New Age:"));
+        Gender gender = Gender.valueOf(JOptionPane.showInputDialog("New Gender:"));
+        MyCustomer updatedMyData = new MyCustomer(inputName2, password, age, gender); // assign inputname and password
 
         found.setName(inputName2); // set inputname
         found.setPassword(password); // set password
@@ -91,10 +96,7 @@ public class CommitteeUserManage extends JFrame implements ActionListener {
       }
       String userName = searchUser.getName();
       int userPassword = searchUser.getPassword();
-      JOptionPane.showMessageDialog(searchUserAccount,userName+" "+ userPassword);
-
-      
-      
+      JOptionPane.showMessageDialog(searchUserAccount, userName + " " + userPassword);
 
     }
   }
