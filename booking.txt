@@ -1,21 +1,14 @@
-10004
-ConsultantA
-Friday
-10
+10001
+ConsultantB
+Tuesday
+14
 false
-abe
+takeshi
 
 10002
 ConsultantB
-Tuesday
+Monday
 15
 false
-abe
-
-10004
-ConsultantC
-Tuesday
-12
-false
-abe
+takezou
 

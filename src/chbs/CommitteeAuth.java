@@ -7,7 +7,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
-public class Page3 extends JFrame implements ActionListener { // action after you push people button
+public class CommitteeAuth extends JFrame implements ActionListener { // action after you push people button
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == stop) {
             System.exit(0);
@@ -43,7 +43,7 @@ public class Page3 extends JFrame implements ActionListener { // action after yo
 
     private Button register, login, stop;
 
-    public Page3() {
+    public CommitteeAuth() {
         setSize(250, 100);
         setLocation(700, 200);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
