@@ -1,14 +1,9 @@
 10001
 ConsultantB
-Tuesday
-14
-false
-takeshi
-
-10002
-ConsultantB
 Monday
-15
+12
 false
-takezou
+hoge
+23
+Man
 
