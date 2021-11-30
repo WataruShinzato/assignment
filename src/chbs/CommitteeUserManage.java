@@ -2,6 +2,10 @@ package chbs;
 
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+
+import chbs.objectDir.MyCustomer;
+import chbs.typeDir.Gender;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Button;

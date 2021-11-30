@@ -2,6 +2,12 @@ package chbs;
 
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+
+import chbs.objectDir.Booking;
+import chbs.objectDir.MyCustomer;
+import chbs.typeDir.Consultant;
+import chbs.typeDir.Day;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Button;

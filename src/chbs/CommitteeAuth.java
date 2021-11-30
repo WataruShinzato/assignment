@@ -7,6 +7,8 @@ import java.awt.event.ActionListener;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
+import chbs.objectDir.Committee;
+
 public class CommitteeAuth extends JFrame implements ActionListener { // action after you push people button
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == stop) {

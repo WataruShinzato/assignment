@@ -7,6 +7,9 @@ import java.awt.event.ActionListener;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
+import chbs.objectDir.Vaccine;
+import chbs.typeDir.Day;
+
 public class VaccineManagement extends JFrame implements ActionListener {
     private Button add, delete, logout, modify, search; // button design
 
@@ -45,13 +48,13 @@ public class VaccineManagement extends JFrame implements ActionListener {
                 Day b = Day.valueOf(JOptionPane.showInputDialog("Day:"));
                 int c = Integer.parseInt(JOptionPane.showInputDialog("Time:"));
                 Vaccine x = new Vaccine(quantity, b, c);
-                 DataIO.allvaccine.add(x);
+                DataIO.allvaccine.add(x);
                 DataIO.write();
             } catch (Exception error) {
                 JOptionPane.showMessageDialog(add, "Wrong Input!");
             }
         } else if (e.getSource() == delete) { // action when you push delete button
-            Day b = Day.valueOf(JOptionPane.showInputDialog("Day:"));   
+            Day b = Day.valueOf(JOptionPane.showInputDialog("Day:"));
             int c = Integer.parseInt(JOptionPane.showInputDialog("Time:"));
             Vaccine found = DataIO.checkingVaccine(b, c);
             if (DataIO.allvaccine.remove(found)) {
@@ -60,12 +63,11 @@ public class VaccineManagement extends JFrame implements ActionListener {
             } else {
                 System.out.println("failed to delete");
             }
-                    
 
         } else if (e.getSource() == modify) { // action when you push bookingmodify button
-            Day b = Day.valueOf(JOptionPane.showInputDialog("Day:"));   // reinput name from user
+            Day b = Day.valueOf(JOptionPane.showInputDialog("Day:")); // reinput name from user
             int c = Integer.parseInt(JOptionPane.showInputDialog("Time:"));
-            Vaccine found = DataIO.checkingVaccine(b, c); 
+            Vaccine found = DataIO.checkingVaccine(b, c);
             if (found != null) {
                 int indexOfMyInfo = DataIO.allvaccine.indexOf(found);
                 int quantity = Integer.parseInt(JOptionPane.showInputDialog("New Quantity:"));
@@ -74,23 +76,28 @@ public class VaccineManagement extends JFrame implements ActionListener {
                 found.setDay(b); // set inputname
                 found.setTime(c); // set password
                 found.setQuantity(quantity);
-                DataIO.allvaccine.set(indexOfMyInfo, updatedVaccineData); // replace the data before and after the change.
+                DataIO.allvaccine.set(indexOfMyInfo, updatedVaccineData); // replace the data before and after the
+                                                                          // change.
                 DataIO.write(); // write it on people file
             } else {
                 JOptionPane.showMessageDialog(modify, "There is no name");
             }
 
         } else if (e.getSource() == search) {
-            Vaccine vaccine = CHBS.login.getMyBookings().get(0); // get booking information of user logged in
-            String dayString = vaccine.getDay().toString(); // change all elements into string
-            String quantityString = String.valueOf(vaccine.getQuantity());
-            String timeString = String.valueOf(vaccine.getTime());
-            // String strpaid = String.valueOf(mybooking.isPaid());
+            Day b = Day.valueOf(JOptionPane.showInputDialog("Day:"));
+            int c = Integer.parseInt(JOptionPane.showInputDialog("Time:"));
+            Vaccine vaccine = DataIO.checkingVaccine(b, c);
+            if (vaccine != null) {
+                String dayString = vaccine.getDay().toString(); // change all elements into string
+                String quantityString = String.valueOf(vaccine.getQuantity());
+                String timeString = String.valueOf(vaccine.getTime());
+                // String strpaid = String.valueOf(mybooking.isPaid());
 
-            JOptionPane.showMessageDialog(search,
-                    quantityString + " " + dayString + " " + timeString); // display booking
-
-           
+                JOptionPane.showMessageDialog(search,
+                        quantityString + " " + dayString + " " + timeString); // display booking
+            } else {
+                JOptionPane.showMessageDialog(search, "There is no data");
+            }
         }
 
     }

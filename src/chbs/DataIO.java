@@ -5,6 +5,14 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import chbs.objectDir.Booking;
+import chbs.objectDir.Committee;
+import chbs.objectDir.MyCustomer;
+import chbs.objectDir.Vaccine;
+import chbs.typeDir.Consultant;
+import chbs.typeDir.Day;
+import chbs.typeDir.Gender;
+
 public class DataIO {
     public static ArrayList<MyCustomer> allCustomers = new ArrayList<MyCustomer>();
     public static ArrayList<Booking> allBookings = new ArrayList<Booking>();
@@ -128,9 +136,10 @@ public class DataIO {
         }
         return null;
     }
-    public static Vaccine checkingVaccine(Day x, int time){                 // checking method
-        for(Vaccine c : allvaccine){
-            if(x==c.getDay() && time == c.getTime()){
+
+    public static Vaccine checkingVaccine(Day x, int time) { // checking method
+        for (Vaccine c : allvaccine) {
+            if (x == c.getDay() && time == c.getTime()) {
                 return c;
             }
         }

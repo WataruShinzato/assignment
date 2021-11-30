@@ -1,5 +1,8 @@
 package chbs;
 
+import chbs.objectDir.Committee;
+import chbs.objectDir.MyCustomer;
+
 public class CHBS {
     public static FirstScreen firstScreen = new FirstScreen();
     public static UserAuth userAuth = new UserAuth();

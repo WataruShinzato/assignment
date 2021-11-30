@@ -1,4 +1,4 @@
-package chbs;
+package chbs.objectDir;
 
 import java.util.ArrayList;
 

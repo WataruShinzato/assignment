@@ -8,6 +8,12 @@ import java.awt.event.ActionListener;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
+import chbs.objectDir.Booking;
+import chbs.objectDir.MyCustomer;
+import chbs.typeDir.Consultant;
+import chbs.typeDir.Day;
+import chbs.typeDir.Gender;
+
 public class UserAccountScreen extends JFrame implements ActionListener { // Action after login
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == logout) { // action when you push logout button

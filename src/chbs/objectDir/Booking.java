@@ -1,4 +1,7 @@
-package chbs;
+package chbs.objectDir;
+
+import chbs.typeDir.Consultant;
+import chbs.typeDir.Day;
 
 public class Booking {
     private int id;

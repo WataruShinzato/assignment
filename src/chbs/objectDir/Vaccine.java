@@ -1,4 +1,6 @@
-package chbs;
+package chbs.objectDir;
+
+import chbs.typeDir.Day;
 
 public class Vaccine {
     private Day day;

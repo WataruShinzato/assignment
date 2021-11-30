@@ -7,6 +7,9 @@ import java.awt.event.ActionListener;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
+import chbs.objectDir.MyCustomer;
+import chbs.typeDir.Gender;
+
 public class UserAuth extends JFrame implements ActionListener { // action after you push people button
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == stop) { // action when you push stop button

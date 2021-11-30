@@ -1,6 +1,8 @@
-package chbs;
+package chbs.objectDir;
 
 import java.util.ArrayList;
+
+import chbs.typeDir.Gender;
 
 public class MyCustomer {
     public static Object Integer;
