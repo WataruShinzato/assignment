@@ -43,7 +43,8 @@ public class CommitteeRoute extends JFrame implements ActionListener {
       CHBS.vaccineManagement.setVisible(true);
 
     } else if (e.getSource() == committeeManagement) {
-      // TODO: move committeeManagementScreen
+      CHBS.committeeManagement.setVisible(true);
+
     } else if (e.getSource() == statisticalReport) {
       // TODO: move statisticalReportScreen
     }

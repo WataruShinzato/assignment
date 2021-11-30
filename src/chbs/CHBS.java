@@ -12,7 +12,7 @@ public class CHBS {
     public static CommitteeRoute committeeRoute = new CommitteeRoute();
     public static CommitteeBookingManage committeeBookingManage = new CommitteeBookingManage();
     public static CommitteeUserManage committeeUserManage = new CommitteeUserManage();
-
+    public static CommitteeManagement committeeManagement = new CommitteeManagement();
     public static VaccineManagement vaccineManagement = new VaccineManagement();
 
     public static MyCustomer login;
