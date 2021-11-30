@@ -112,4 +112,12 @@ public class DataIO {
         }
         return null;
     }
+    public static Vaccine checkingVaccine(Day x, int time){                 // checking method
+        for(Vaccine c : allvaccine){
+            if(x==c.getDay() && time == c.getTime()){
+                return c;
+            }
+        }
+        return null;
+    }
 }
