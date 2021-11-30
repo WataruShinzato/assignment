@@ -14,6 +14,7 @@ public class CHBS {
     public static CommitteeUserManage committeeUserManage = new CommitteeUserManage();
     public static CommitteeManagement committeeManagement = new CommitteeManagement();
     public static VaccineManagement vaccineManagement = new VaccineManagement();
+    public static StatisticalReport statisticalReport = new StatisticalReport();
 
     public static MyCustomer login;
     public static Committee committee;

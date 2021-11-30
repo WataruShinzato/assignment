@@ -46,7 +46,7 @@ public class CommitteeRoute extends JFrame implements ActionListener {
       CHBS.committeeManagement.setVisible(true);
 
     } else if (e.getSource() == statisticalReport) {
-      // TODO: move statisticalReportScreen
+      CHBS.statisticalReport.setVisible(true);
     }
   }
 }
