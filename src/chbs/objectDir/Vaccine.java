@@ -1,13 +1,11 @@
 package chbs.objectDir;
 
-import chbs.typeDir.Day;
-
 public class Vaccine {
-    private Day day;
+    private String day;
     private int time;
     private int quantity;
 
-    public Vaccine(int quantity, Day day, int time) {
+    public Vaccine(int quantity, String day, int time) {
         this.quantity = quantity;
         this.day = day;
         this.time = time;
@@ -21,11 +19,11 @@ public class Vaccine {
         this.quantity = quantity;
     }
 
-    public Day getDay() {
+    public String getDay() {
         return day;
     }
 
-    public void setDay(Day day) {
+    public void setDay(String day) {
         this.day = day;
     }
 

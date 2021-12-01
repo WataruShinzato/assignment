@@ -1,9 +1,16 @@
 10001
-ConsultantB
+VaccineVenueB
 Monday
 12
-false
 hoge
 23
+Man
+
+10002
+VaccineVenueA
+Monday
+12
+takeda
+56
 Man
 

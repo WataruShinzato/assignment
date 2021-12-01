@@ -4,11 +4,13 @@ import java.awt.Button;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 import chbs.objectDir.Vaccine;
-import chbs.typeDir.Day;
 
 public class VaccineManagement extends JFrame implements ActionListener {
     private Button add, delete, logout, modify, search; // button design
@@ -44,17 +46,21 @@ public class VaccineManagement extends JFrame implements ActionListener {
             CHBS.firstScreen.setVisible(true);
         } else if (e.getSource() == add) { // action when you push booking button
             try {
+                Date d = new Date();
+                SimpleDateFormat d1 = new SimpleDateFormat("yyyy/MM/dd");
+                SimpleDateFormat time1 = new SimpleDateFormat("HH");
+                String b = d1.format(d);
+                String time2 = time1.format(d);
                 int quantity = Integer.parseInt(JOptionPane.showInputDialog("Additional Quantity:"));
-                Day b = Day.valueOf(JOptionPane.showInputDialog("Day:"));
-                int c = Integer.parseInt(JOptionPane.showInputDialog("Time:"));
-                Vaccine x = new Vaccine(quantity, b, c);
+
+                Vaccine x = new Vaccine(quantity, b, Integer.parseInt(time2));
                 DataIO.allvaccine.add(x);
                 DataIO.write();
             } catch (Exception error) {
                 JOptionPane.showMessageDialog(add, "Wrong Input!");
             }
         } else if (e.getSource() == delete) { // action when you push delete button
-            Day b = Day.valueOf(JOptionPane.showInputDialog("Day:"));
+            String b = JOptionPane.showInputDialog("Day:");
             int c = Integer.parseInt(JOptionPane.showInputDialog("Time:"));
             Vaccine found = DataIO.checkingVaccine(b, c);
             if (DataIO.allvaccine.remove(found)) {
@@ -65,7 +71,7 @@ public class VaccineManagement extends JFrame implements ActionListener {
             }
 
         } else if (e.getSource() == modify) { // action when you push bookingmodify button
-            Day b = Day.valueOf(JOptionPane.showInputDialog("Day:")); // reinput name from user
+            String b = JOptionPane.showInputDialog("Day:"); // reinput name from user
             int c = Integer.parseInt(JOptionPane.showInputDialog("Time:"));
             Vaccine found = DataIO.checkingVaccine(b, c);
             if (found != null) {
@@ -84,14 +90,13 @@ public class VaccineManagement extends JFrame implements ActionListener {
             }
 
         } else if (e.getSource() == search) {
-            Day b = Day.valueOf(JOptionPane.showInputDialog("Day:"));
+            String b = JOptionPane.showInputDialog("Day:");
             int c = Integer.parseInt(JOptionPane.showInputDialog("Time:"));
             Vaccine vaccine = DataIO.checkingVaccine(b, c);
             if (vaccine != null) {
                 String dayString = vaccine.getDay().toString(); // change all elements into string
                 String quantityString = String.valueOf(vaccine.getQuantity());
                 String timeString = String.valueOf(vaccine.getTime());
-                // String strpaid = String.valueOf(mybooking.isPaid());
 
                 JOptionPane.showMessageDialog(search,
                         quantityString + " " + dayString + " " + timeString); // display booking

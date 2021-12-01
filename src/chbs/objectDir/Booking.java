@@ -1,22 +1,20 @@
 package chbs.objectDir;
 
-import chbs.typeDir.Consultant;
+import chbs.typeDir.VaccineVenue;
 import chbs.typeDir.Day;
 
 public class Booking {
     private int id;
-    private Consultant consultant;
+    private VaccineVenue consultant;
     private Day day;
     private int time;
-    private boolean paid;
     private MyCustomer onwer;
 
-    public Booking(int id, Consultant consultant, Day day, int time, boolean paid, MyCustomer onwer) {
+    public Booking(int id, VaccineVenue consultant, Day day, int time, MyCustomer onwer) {
         this.id = id;
         this.consultant = consultant;
         this.day = day;
         this.time = time;
-        this.paid = paid;
         this.onwer = onwer;
     }
 
@@ -28,11 +26,11 @@ public class Booking {
         this.id = id;
     }
 
-    public Consultant getConsultant() {
+    public VaccineVenue getVaccineVenue() {
         return consultant;
     }
 
-    public void setConsultant(Consultant consultant) {
+    public void setVaccineVenue(VaccineVenue consultant) {
         this.consultant = consultant;
     }
 
@@ -50,14 +48,6 @@ public class Booking {
 
     public void setTime(int time) {
         this.time = time;
-    }
-
-    public boolean isPaid() {
-        return paid;
-    }
-
-    public void setPaid(boolean paid) {
-        this.paid = paid;
     }
 
     public MyCustomer getOnwer() {

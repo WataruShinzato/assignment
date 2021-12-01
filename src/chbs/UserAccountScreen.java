@@ -10,7 +10,7 @@ import javax.swing.JOptionPane;
 
 import chbs.objectDir.Booking;
 import chbs.objectDir.MyCustomer;
-import chbs.typeDir.Consultant;
+import chbs.typeDir.VaccineVenue;
 import chbs.typeDir.Day;
 import chbs.typeDir.Gender;
 
@@ -22,9 +22,9 @@ public class UserAccountScreen extends JFrame implements ActionListener { // Act
             CHBS.userAuth.setVisible(true);
         } else if (e.getSource() == booking) { // action when you push booking button
             int size = CHBS.login.getMyBookings().size();
-            if (size == 0 || CHBS.login.getMyBookings().get(size - 1).isPaid()) {
+            if (size == 0) {
                 try {
-                    Consultant a = Consultant.valueOf(JOptionPane.showInputDialog("Consultant:"));
+                    VaccineVenue a = VaccineVenue.valueOf(JOptionPane.showInputDialog("Vaccine Venue:"));
                     Day b = Day.valueOf(JOptionPane.showInputDialog("Day:"));
                     int c = Integer.parseInt(JOptionPane.showInputDialog("Time:"));
                     if (c < 9 || c > 16) {
@@ -33,7 +33,7 @@ public class UserAccountScreen extends JFrame implements ActionListener { // Act
                     boolean flag = true;
                     for (int i = 0; i < DataIO.allBookings.size(); i++) {
                         Booking j = DataIO.allBookings.get(i);
-                        if (a.equals(j.getConsultant()) && b.equals(j.getDay()) && c == j.getTime()) {
+                        if (a.equals(j.getVaccineVenue()) && b.equals(j.getDay()) && c == j.getTime()) {
                             flag = false;
                             break;
                         }
@@ -41,7 +41,7 @@ public class UserAccountScreen extends JFrame implements ActionListener { // Act
                     if (flag) {
                         int id = 10001 + DataIO.allBookings.size();
                         JOptionPane.showMessageDialog(booking, "Your id is " + id);
-                        Booking x = new Booking(id, a, b, c, false, CHBS.login);
+                        Booking x = new Booking(id, a, b, c, CHBS.login);
                         DataIO.allBookings.add(x);
                         CHBS.login.getMyBookings().add(x);
                         DataIO.write();
@@ -52,10 +52,10 @@ public class UserAccountScreen extends JFrame implements ActionListener { // Act
                     JOptionPane.showMessageDialog(booking, "Wrong input!");
                 }
             } else {
-                JOptionPane.showMessageDialog(booking, "You have unpaid booking!");
+                JOptionPane.showMessageDialog(booking, "You already have booking!");
             }
         } else if (e.getSource() == cancel) { // action when you push cancel button
-            Booking searchBooking = DataIO.findBookingByid(false); // define unpaid
+            Booking searchBooking = DataIO.findBookingByid(); // define
 
             if (searchBooking != null && CHBS.login.getMyBookings().remove(searchBooking)) {
                 DataIO.write();
@@ -66,12 +66,12 @@ public class UserAccountScreen extends JFrame implements ActionListener { // Act
 
         } else if (e.getSource() == bookingmodify) { // action when you push bookingmodify button
             int size = CHBS.login.getMyBookings().size();
-            Booking searchBooking = DataIO.findBookingByid(false);
+            Booking searchBooking = DataIO.findBookingByid();
             int indexOfMyAppoint = DataIO.allBookings.indexOf(searchBooking);
 
             if (size > 0) {
                 try {
-                    Consultant a = Consultant.valueOf(JOptionPane.showInputDialog("Consultant:"));
+                    VaccineVenue a = VaccineVenue.valueOf(JOptionPane.showInputDialog("Vaccine Venue:"));
                     Day b = Day.valueOf(JOptionPane.showInputDialog("Day:"));
                     int c = Integer.parseInt(JOptionPane.showInputDialog("Time:"));
                     if (c < 9 || c > 16) {
@@ -80,7 +80,7 @@ public class UserAccountScreen extends JFrame implements ActionListener { // Act
                     boolean flag = true;
                     for (int i = 0; i < DataIO.allBookings.size(); i++) {
                         Booking j = DataIO.allBookings.get(i);
-                        if (a.equals(j.getConsultant()) && b.equals(j.getDay()) && c == j.getTime()) {
+                        if (a.equals(j.getVaccineVenue()) && b.equals(j.getDay()) && c == j.getTime()) {
                             flag = false;
                             break;
                         }
@@ -88,7 +88,7 @@ public class UserAccountScreen extends JFrame implements ActionListener { // Act
                     if (flag) {
                         int id = 10001 + DataIO.allBookings.size();
                         JOptionPane.showMessageDialog(booking, "Your id is " + id);
-                        Booking x = new Booking(id, a, b, c, false, CHBS.login);
+                        Booking x = new Booking(id, a, b, c, CHBS.login);
                         CHBS.login.getMyBookings().set(0, x);
                         DataIO.allBookings.set(indexOfMyAppoint, x);
                         DataIO.write();
@@ -122,9 +122,8 @@ public class UserAccountScreen extends JFrame implements ActionListener { // Act
             String strday = mybooking.getDay().toString(); // change all elements into string
             String strid = String.valueOf(mybooking.getId());
             String strtime = String.valueOf(mybooking.getTime());
-            String strconsul = mybooking.getConsultant().toString();
+            String strconsul = mybooking.getVaccineVenue().toString();
             String strname = mybooking.getOnwer().getName().toString();
-            // String strpaid = String.valueOf(mybooking.isPaid());
 
             JOptionPane.showMessageDialog(viewreservation,
                     strday + " " + strid + " " + strtime + " " + strconsul + " " + strname); // display booking

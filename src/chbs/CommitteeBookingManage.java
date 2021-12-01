@@ -5,7 +5,7 @@ import javax.swing.JOptionPane;
 
 import chbs.objectDir.Booking;
 import chbs.objectDir.MyCustomer;
-import chbs.typeDir.Consultant;
+import chbs.typeDir.VaccineVenue;
 import chbs.typeDir.Day;
 
 import java.awt.event.ActionListener;
@@ -44,9 +44,9 @@ public class CommitteeBookingManage extends JFrame implements ActionListener {
       if (customer != null) {
         int size = customer.getMyBookings().size();
 
-        if (size == 0 || customer.getMyBookings().get(size - 1).isPaid()) {
+        if (size == 0) {
           try {
-            Consultant a = Consultant.valueOf(JOptionPane.showInputDialog("Consultant:"));
+            VaccineVenue a = VaccineVenue.valueOf(JOptionPane.showInputDialog("Vaccine Venue:"));
             Day b = Day.valueOf(JOptionPane.showInputDialog("Day:"));
             int c = Integer.parseInt(JOptionPane.showInputDialog("Time:"));
             if (c < 9 || c > 16) {
@@ -55,7 +55,7 @@ public class CommitteeBookingManage extends JFrame implements ActionListener {
             boolean flag = true;
             for (int i = 0; i < DataIO.allBookings.size(); i++) {
               Booking j = DataIO.allBookings.get(i);
-              if (a.equals(j.getConsultant()) && b.equals(j.getDay()) && c == j.getTime()) {
+              if (a.equals(j.getVaccineVenue()) && b.equals(j.getDay()) && c == j.getTime()) {
                 flag = false;
                 break;
               }
@@ -63,7 +63,7 @@ public class CommitteeBookingManage extends JFrame implements ActionListener {
             if (flag) {
               int id = 10001 + DataIO.allBookings.size();
               JOptionPane.showMessageDialog(addBooking, "Your id is " + id);
-              Booking x = new Booking(id, a, b, c, false, customer);
+              Booking x = new Booking(id, a, b, c, customer);
               DataIO.allBookings.add(x);
               DataIO.write();
             } else {
@@ -73,7 +73,7 @@ public class CommitteeBookingManage extends JFrame implements ActionListener {
             JOptionPane.showMessageDialog(addBooking, "Wrong input!");
           }
         } else {
-          JOptionPane.showMessageDialog(addBooking, "You have unpaid booking!");
+          JOptionPane.showMessageDialog(addBooking, "You already have booking!");
         }
       } else {
         JOptionPane.showMessageDialog(addBooking, "There is no name in the booking!");
@@ -99,7 +99,7 @@ public class CommitteeBookingManage extends JFrame implements ActionListener {
 
       if (size > 0) {
         try {
-          Consultant a = Consultant.valueOf(JOptionPane.showInputDialog("Consultant:"));
+          VaccineVenue a = VaccineVenue.valueOf(JOptionPane.showInputDialog("Vaccine Venue:"));
           Day b = Day.valueOf(JOptionPane.showInputDialog("Day:"));
           int c = Integer.parseInt(JOptionPane.showInputDialog("Time:"));
           if (c < 9 || c > 16) {
@@ -108,7 +108,7 @@ public class CommitteeBookingManage extends JFrame implements ActionListener {
           boolean flag = true;
           for (int i = 0; i < DataIO.allBookings.size(); i++) {
             Booking j = DataIO.allBookings.get(i);
-            if (a.equals(j.getConsultant()) && b.equals(j.getDay()) && c == j.getTime()) {
+            if (a.equals(j.getVaccineVenue()) && b.equals(j.getDay()) && c == j.getTime()) {
               flag = false;
               break;
             }
@@ -116,7 +116,7 @@ public class CommitteeBookingManage extends JFrame implements ActionListener {
           if (flag) {
             int id = customer.getMyBookings().get(0).getId(); // use previous id (not update)
             JOptionPane.showMessageDialog(modifyBooking, "Your id is " + id);
-            Booking x = new Booking(id, a, b, c, false, customer);
+            Booking x = new Booking(id, a, b, c, customer);
             customer.getMyBookings().set(0, x);
             DataIO.allBookings.set(indexOfMyAppoint, x);
             DataIO.write();
@@ -148,11 +148,11 @@ public class CommitteeBookingManage extends JFrame implements ActionListener {
         Booking searchUserBooking = searchUser.getMyBookings().get(0);
 
         String bookingId = String.valueOf(searchUserBooking.getId());
-        String bookingConsultant = searchUserBooking.getConsultant().toString();
+        String bookingVenue = searchUserBooking.getVaccineVenue().toString();
         String bookingDay = searchUserBooking.getDay().toString();
         String bookingTime = String.valueOf(searchUserBooking.getTime());
 
-        String dialogLabel = bookingId + "\n" + bookingConsultant + "\n" + bookingDay + "\n" + bookingTime + "\n"
+        String dialogLabel = bookingId + "\n" + bookingVenue + "\n" + bookingDay + "\n" + bookingTime + "\n"
             + "Register: " + inputName;
         JOptionPane.showMessageDialog(searchBooking, dialogLabel);
       } else {

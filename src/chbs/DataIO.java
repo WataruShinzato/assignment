@@ -9,7 +9,7 @@ import chbs.objectDir.Booking;
 import chbs.objectDir.Committee;
 import chbs.objectDir.MyCustomer;
 import chbs.objectDir.Vaccine;
-import chbs.typeDir.Consultant;
+import chbs.typeDir.VaccineVenue;
 import chbs.typeDir.Day;
 import chbs.typeDir.Gender;
 
@@ -42,22 +42,21 @@ public class DataIO {
             Scanner t = new Scanner(new File("booking.txt")); // scan booking file and add to allbookings array.
             while (t.hasNext()) {
                 int a = Integer.parseInt(t.nextLine());
-                Consultant b = Consultant.valueOf(t.nextLine());
+                VaccineVenue b = VaccineVenue.valueOf(t.nextLine());
                 Day c = Day.valueOf(t.nextLine());
                 int d = Integer.parseInt(t.nextLine());
-                boolean e = Boolean.parseBoolean(t.nextLine());
                 MyCustomer f = DataIO.checking(t.nextLine());
                 t.nextLine();
                 t.nextLine();
                 t.nextLine();
-                Booking x = new Booking(a, b, c, d, e, f);
+                Booking x = new Booking(a, b, c, d, f);
                 allBookings.add(x);
                 f.getMyBookings().add(x);
             }
             Scanner vaccineFile = new Scanner(new File("vaccine.txt"));
             while (vaccineFile.hasNext()) {
                 int quantity = Integer.parseInt(vaccineFile.nextLine());
-                Day day = Day.valueOf(vaccineFile.nextLine());
+                String day = vaccineFile.nextLine();
                 int time = Integer.parseInt(vaccineFile.nextLine());
                 vaccineFile.nextLine();
                 Vaccine vaccine = new Vaccine(quantity, day, time);
@@ -99,10 +98,9 @@ public class DataIO {
             for (int i = 0; i < allBookings.size(); i++) {
                 Booking j = allBookings.get(i);
                 q.println(j.getId());
-                q.println(j.getConsultant());
+                q.println(j.getVaccineVenue());
                 q.println(j.getDay());
                 q.println(j.getTime());
-                q.println(j.isPaid());
                 q.println(j.getOnwer().getName());
                 q.println(j.getOnwer().getAge());
                 q.println(j.getOnwer().getGender());
@@ -123,13 +121,12 @@ public class DataIO {
         return null;
     }
 
-    public static Booking findBookingByid(Boolean argIsPaid) { // find specific booking by id
-        for (Booking myBook : CHBS.login.getMyBookings()) {
-            if (myBook.isPaid() == argIsPaid) {
-                return myBook;
-            }
+    public static Booking findBookingByid() { // find specific booking by id
+        if (CHBS.login.getMyBookings().size() > 0) {
+            return CHBS.login.getMyBookings().get(0);
+        } else {
+            return null;
         }
-        return null;
     }
 
     public static Committee checkingCommittee(String name) {
@@ -141,7 +138,7 @@ public class DataIO {
         return null;
     }
 
-    public static Vaccine checkingVaccine(Day x, int time) { // checking method
+    public static Vaccine checkingVaccine(String x, int time) { // checking method
         for (Vaccine c : allvaccine) {
             if (x == c.getDay() && time == c.getTime()) {
                 return c;
