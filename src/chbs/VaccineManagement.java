@@ -17,11 +17,11 @@ public class VaccineManagement extends JFrame implements ActionListener {
         setSize(500, 250);
         setLocation(700, 500);
         setLayout(new FlowLayout());
-        add = new Button("Add");
-        delete = new Button("Delete");
+        add = new Button("Add Vaccine Data");
+        delete = new Button("Delete Vaccine Data");
         logout = new Button("Logout");
-        modify = new Button("Modify");
-        search = new Button("Search");
+        modify = new Button("Modify Vaccine Data");
+        search = new Button("Search Vaccine Data");
 
         add.addActionListener(this);
         delete.addActionListener(this);
@@ -59,9 +59,9 @@ public class VaccineManagement extends JFrame implements ActionListener {
             Vaccine found = DataIO.checkingVaccine(b, c);
             if (DataIO.allvaccine.remove(found)) {
                 DataIO.write();
-                JOptionPane.showMessageDialog(delete, "deleted");
+                JOptionPane.showMessageDialog(delete, "Deleted!");
             } else {
-                System.out.println("failed to delete");
+                System.out.println("Failed to delete!");
             }
 
         } else if (e.getSource() == modify) { // action when you push bookingmodify button
@@ -80,7 +80,7 @@ public class VaccineManagement extends JFrame implements ActionListener {
                                                                           // change.
                 DataIO.write(); // write it on people file
             } else {
-                JOptionPane.showMessageDialog(modify, "There is no name");
+                JOptionPane.showMessageDialog(modify, "There is no name!");
             }
 
         } else if (e.getSource() == search) {
@@ -96,7 +96,7 @@ public class VaccineManagement extends JFrame implements ActionListener {
                 JOptionPane.showMessageDialog(search,
                         quantityString + " " + dayString + " " + timeString); // display booking
             } else {
-                JOptionPane.showMessageDialog(search, "There is no data");
+                JOptionPane.showMessageDialog(search, "There is no data!");
             }
         }
 

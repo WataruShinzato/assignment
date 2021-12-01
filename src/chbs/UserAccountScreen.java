@@ -61,7 +61,7 @@ public class UserAccountScreen extends JFrame implements ActionListener { // Act
                 DataIO.write();
                 JOptionPane.showMessageDialog(cancel, "You removed reservation!");
             } else {
-                JOptionPane.showMessageDialog(cancel, "There's no reservation");
+                JOptionPane.showMessageDialog(cancel, "There's no reservation!");
             }
 
         } else if (e.getSource() == bookingmodify) { // action when you push bookingmodify button

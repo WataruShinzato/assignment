@@ -19,7 +19,7 @@ public class StatisticalReport extends JFrame implements ActionListener {
         setLayout(new FlowLayout());
 
         searchByAge = new Button("Search By Age");
-        searchByGender = new Button("Search By Man");
+        searchByGender = new Button("Search By Gender");
 
         searchByAge.addActionListener(this);
         searchByGender.addActionListener(this);
