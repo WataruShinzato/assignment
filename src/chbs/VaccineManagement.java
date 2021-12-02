@@ -60,8 +60,8 @@ public class VaccineManagement extends JFrame implements ActionListener {
                 JOptionPane.showMessageDialog(add, "Wrong Input!");
             }
         } else if (e.getSource() == delete) { // action when you push delete button
-            String b = JOptionPane.showInputDialog("Day:");
-            int c = Integer.parseInt(JOptionPane.showInputDialog("Time:"));
+            String b = JOptionPane.showInputDialog("Day(yyyy/MM/dd):");
+            int c = Integer.parseInt(JOptionPane.showInputDialog("Time(HH):"));
             Vaccine found = DataIO.checkingVaccine(b, c);
             if (DataIO.allvaccine.remove(found)) {
                 DataIO.write();
@@ -71,8 +71,8 @@ public class VaccineManagement extends JFrame implements ActionListener {
             }
 
         } else if (e.getSource() == modify) { // action when you push bookingmodify button
-            String b = JOptionPane.showInputDialog("Day:"); // reinput name from user
-            int c = Integer.parseInt(JOptionPane.showInputDialog("Time:"));
+            String b = JOptionPane.showInputDialog("Day(yyyy/MM/dd):"); // reinput name from user
+            int c = Integer.parseInt(JOptionPane.showInputDialog("Time(HH):"));
             Vaccine found = DataIO.checkingVaccine(b, c);
             if (found != null) {
                 int indexOfMyInfo = DataIO.allvaccine.indexOf(found);
@@ -90,8 +90,8 @@ public class VaccineManagement extends JFrame implements ActionListener {
             }
 
         } else if (e.getSource() == search) {
-            String b = JOptionPane.showInputDialog("Day:");
-            int c = Integer.parseInt(JOptionPane.showInputDialog("Time:"));
+            String b = JOptionPane.showInputDialog("Day(yyyy/MM/dd):");
+            int c = Integer.parseInt(JOptionPane.showInputDialog("Time(HH):"));
             Vaccine vaccine = DataIO.checkingVaccine(b, c);
             if (vaccine != null) {
                 String dayString = vaccine.getDay().toString(); // change all elements into string

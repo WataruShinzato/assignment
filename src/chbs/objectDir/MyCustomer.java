@@ -4,35 +4,16 @@ import java.util.ArrayList;
 
 import chbs.typeDir.Gender;
 
-public class MyCustomer {
+public class MyCustomer extends Committee {
     public static Object Integer;
-    private String name;
-    private int password;
     private int age;
     private Gender gender;
     private ArrayList<Booking> myBookings = new ArrayList<Booking>();
 
     public MyCustomer(String name, int password, int age, Gender gender) {
-        this.name = name;
-        this.password = password;
+        super(name, password);
         this.age = age;
         this.gender = gender;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public int getPassword() {
-        return password;
-    }
-
-    public void setPassword(int password) {
-        this.password = password;
     }
 
     public int getAge() {
